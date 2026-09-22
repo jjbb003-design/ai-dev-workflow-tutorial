@@ -61,3 +61,34 @@ def test_duplicate_orders(tmp_path, sample):
     sample.loc[1, 'order_id'] = 'o1'
     with pytest.raises(ValueError, match='Duplicate'):
         sales.load_sales(write_csv(tmp_path, sample))
+
+
+def test_kpis(tmp_path, sample):
+    data = sales.load_sales(write_csv(tmp_path, sample))
+    assert sales.calculate_kpis(data) == (35, 3)
+
+
+def test_months_are_chronological_and_reconcile(tmp_path, sample):
+    data = sales.load_sales(write_csv(tmp_path, sample))
+    result = sales.monthly_sales(data)
+    assert result['date'].dt.strftime('%Y-%m-%d').tolist() == ['2024-01-01', '2024-02-01']
+    assert result['total_amount'].tolist() == [15, 20]
+    assert result['total_amount'].sum() == 35
+
+
+@pytest.mark.parametrize('column,labels,amounts', [
+    ('category', ['A', 'B'], [25, 10]),
+    ('region', ['East', 'West'], [30, 5]),
+])
+def test_breakdowns_sorted_and_reconciled(tmp_path, sample, column, labels, amounts):
+    data = sales.load_sales(write_csv(tmp_path, sample))
+    result = sales.sales_by(data, column)
+    assert result[column].tolist() == labels
+    assert result['total_amount'].tolist() == amounts
+    assert result['total_amount'].sum() == 35
+
+
+def test_rejects_unsupported_group(tmp_path, sample):
+    data = sales.load_sales(write_csv(tmp_path, sample))
+    with pytest.raises(ValueError, match='category or region'):
+        sales.sales_by(data, 'order_id')

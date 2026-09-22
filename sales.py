@@ -31,3 +31,23 @@ def load_sales(path: Path) -> pd.DataFrame:
     if not np.isfinite(data['total_amount']).all() or data['total_amount'].lt(0).any():
         raise ValueError('Sales amounts must be finite, nonnegative numbers.')
     return data
+
+
+def calculate_kpis(data: pd.DataFrame) -> tuple[float, int]:
+    """Sum sales and count the validated one-row-per-order transactions."""
+    return float(data['total_amount'].sum()), len(data)
+
+
+def monthly_sales(data: pd.DataFrame) -> pd.DataFrame:
+    """Aggregate calendar months in chronological order."""
+    return (data.set_index('date')['total_amount']
+            .resample('MS').sum().reset_index())
+
+
+def sales_by(data: pd.DataFrame, column: str) -> pd.DataFrame:
+    """Rank category or region totals, using names to break ties."""
+    if column not in {'category', 'region'}:
+        raise ValueError('Group must be category or region.')
+    return (data.groupby(column, as_index=False)['total_amount'].sum()
+            .sort_values(['total_amount', column], ascending=[False, True])
+            .reset_index(drop=True))
