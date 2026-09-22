@@ -78,7 +78,7 @@ Files: `tests/test_app.py`, `AGENTS.md`, `TASKS.md`, `README.md`.
 - [x] Open the live local app and inspect title, KPI values, chart ordering, labels, and tooltips. Record the tested browser and timing limitations.
 - [x] Write project instructions, run/redeploy directions, provenance, and lessons; preserve the upstream README as `TUTORIAL.md` before replacing the root landing page.
 - [x] Review the branch against the PRD, fix substantive findings, and record actual review limitations. Commit with TASK-5.
-- [ ] Publish to Joseph's `ai-dev-workflow-tutorial` GitHub repository on main. Verify code and board arrived.
+- [x] Publish to Joseph's `ai-dev-workflow-tutorial` GitHub repository on main. Verify code and board arrived.
 - [ ] Deploy main/app.py to Streamlit Community Cloud after account authorization, open the public URL, verify all charts, and record the URL and real completion status.
 
 ## Plan self-review and approval
@@ -91,6 +91,9 @@ Codex checked coverage against the approved design and PRD: all five functional 
 - TASK-1: 13 tests failed for missing load_sales, then all 13 passed after validation implementation. Commit ebcffbd.
 - TASK-2–4: five new calculation tests failed for missing functions, then all 18 tests passed. Shared code commit 29d1715; separate board commits record each milestone. Combined calculation work is an explicit deviation from separate per-milestone code commits, chosen because the small module shares one fixture and validation contract.
 - TASK-5: independent Decimal total equals 116500.21 for 482 rows; 19 tests pass, including AppTest with two metrics, three charts, and no app errors. Code/docs commit e783bf5.
-- Visual review: in-app Chromium showed readable KPI cards, Jan–Dec trend, all five categories and four regions, largest bars at top. Actual browser hover interaction and cross-browser coverage remain unverified; hover formats are configured in code.
+- Visual review: in-app Chromium showed readable KPI cards, Jan–Dec trend, all five categories and four regions, largest bars at top. Browser tooltip check displayed Electronics $42,683.67; cross-browser coverage remains unverified.
 - Review performed inline by Codex against the PRD and diff; no independent reviewer or student review is claimed. Retained tutorial instructions. No private data or credentials staged. Cloud startup targets are unverified until deployment.
+
+
+Published main commit 358f218; anonymous HTTP retrieval of app.py, requirements.txt, and TASKS.md returned 200 and matched local contents.
 
