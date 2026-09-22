@@ -11,7 +11,7 @@ This file tracks Joseph Barragan's ShopSmart tutorial implementation.
 
 ## To Do
 
-- [ ] **TASK-2: KPI scorecards** — correct, formatted sales and order totals. Commit: pending.
+
 - [ ] **TASK-3: Sales trend** — monthly chronological line chart. Commit: pending.
 - [ ] **TASK-4: Category and region** — descending bar charts, all groups included. Commit: pending.
 - [ ] **TASK-5: Verify and deploy** — tests pass, local page checked, public deployment verified. Commit: pending.
@@ -22,9 +22,12 @@ This file tracks Joseph Barragan's ShopSmart tutorial implementation.
 
 ## Done
 
+- [x] **TASK-2: KPI scorecards** — correct, formatted sales and order totals. Commit: 29d1715. Notes: fixture tests failed before implementation, then passed; charts visually checked.
+
 - [x] **TASK-1: Setup and loading** — 13 input-validation tests and title-only AppTest passed; local server started. Commit: ebcffbd.
 
 ## Approval and workflow record
 
 Joseph explicitly approved the saved design, then the saved plan, on September 22, 2026. Execution is inline. Public sample data only. The original tutorial README will be preserved as TUTORIAL.md when the project landing page is updated.
+
 
