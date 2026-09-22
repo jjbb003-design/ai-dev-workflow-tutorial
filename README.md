@@ -33,8 +33,8 @@ On macOS/Linux activate with `source venv/bin/activate`. Runtime dependencies ar
 
 ## Deployment and verification
 
-Deploy this repository's `main` branch and `app.py` on [Streamlit Community Cloud](https://share.streamlit.io/). Dependencies come from `requirements.txt`. A public URL will be recorded after deployment succeeds and charts are verified.
+Deploy this repository's `main` branch and `app.py` on [Streamlit Community Cloud](https://share.streamlit.io/). Dependencies come from `requirements.txt`. Live dashboard: [ShopSmart — Joseph Barragan](https://shopsmart-joseph-barragan.streamlit.app/).
 
-Current state: local dashboard and 19 tests pass; public deployment awaits account setup. Codex visually checked the in-app Chromium browser. Firefox/Safari and cold-cloud startup timing have not been verified. AppTest emits a bare-mode context warning from its testing harness; the app itself has no displayed error or exception.
+Current state: deployed and verified September 22, 2026; 19 tests pass. Codex visually checked the live dashboard in the in-app Chromium browser: $116,500.21, 482 orders, monthly trend, five categories, and four regions. Anonymous HTTP access returned 200. Firefox/Safari and cold-cloud startup timing have not been verified. AppTest emits a bare-mode context warning from its testing harness; the app itself has no displayed error or exception.
 
 Source: [LMU tutorial](https://github.com/LMU-ISBA/ai-dev-workflow-tutorial). Original tutorial and public data are retained. Joseph supplied design and plan approvals. Codex performed the automated and visual checks; they are not represented as Joseph's independent review.
