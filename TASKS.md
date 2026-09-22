@@ -18,12 +18,13 @@ This file tracks Joseph Barragan's ShopSmart tutorial implementation.
 
 ## In Progress
 
-- [ ] **TASK-1: Setup and loading** — plain venv, validated public CSV, clear errors, app title. Commit: pending.
+
 
 ## Done
 
-None yet.
+- [x] **TASK-1: Setup and loading** — 13 input-validation tests and title-only AppTest passed; local server started. Commit: ebcffbd.
 
 ## Approval and workflow record
 
 Joseph explicitly approved the saved design, then the saved plan, on September 22, 2026. Execution is inline. Public sample data only. The original tutorial README will be preserved as TUTORIAL.md when the project landing page is updated.
+
