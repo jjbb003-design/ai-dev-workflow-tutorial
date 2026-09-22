@@ -33,11 +33,11 @@ Files: `requirements.txt`, `requirements-dev.txt`, `sales.py`, `tests/test_sales
 
 Interface: `load_sales(path: Path) -> pandas.DataFrame`; required columns `date`, `order_id`, `category`, `region`, `total_amount`; normalize dates and sales numeric types.
 
-- [ ] Create a five-milestone board from the PRD and mark TASK-1 in progress.
-- [ ] Create `venv/`, install pandas/Streamlit/Plotly and pytest, and record tested dependency versions.
-- [ ] Write fixture tests for a three-row valid CSV and missing file, missing column, empty input, invalid date, blank categories, negative/nonfinite amounts, and duplicate order IDs. Expect explicit `ValueError` or `FileNotFoundError`; observe failure before implementation.
-- [ ] Implement validation with explicit messages and add a title-only app that catches load errors and stops.
-- [ ] Run `venv/Scripts/python -m pytest -q`, launch `streamlit run app.py`, then commit with TASK-1 and record its hash.
+- [x] Create a five-milestone board from the PRD and mark TASK-1 in progress.
+- [x] Create `venv/`, install pandas/Streamlit/Plotly and pytest, and record tested dependency versions.
+- [x] Write fixture tests for a three-row valid CSV and missing file, missing column, empty input, invalid date, blank categories, negative/nonfinite amounts, and duplicate order IDs. Expect explicit `ValueError` or `FileNotFoundError`; observe failure before implementation.
+- [x] Implement validation with explicit messages and add a title-only app that catches load errors and stops.
+- [x] Run `venv/Scripts/python -m pytest -q`, launch `streamlit run app.py`, then commit with TASK-1 and record its hash.
 
 ## Task 2 — TASK-2: KPI cards
 
@@ -45,9 +45,9 @@ Files: `sales.py`, `tests/test_sales.py`, `app.py`, `TASKS.md`.
 
 Interface: `calculate_kpis(df) -> tuple[float, int]` returns summed amount and transaction count.
 
-- [ ] Write a test with amounts 20, 5, and 10, expecting sales 35 and orders 3. Observe its failure.
-- [ ] Implement the calculation and two formatted `st.metric` cards; currency has two decimals and counts use separators.
-- [ ] Run tests and app smoke check, commit with TASK-2, update board.
+- [x] Write a test with amounts 20, 5, and 10, expecting sales 35 and orders 3. Observe its failure.
+- [x] Implement the calculation and two formatted `st.metric` cards; currency has two decimals and counts use separators.
+- [x] Run tests and app smoke check, commit with TASK-2, update board.
 
 ## Task 3 — TASK-3: Monthly trend
 
@@ -55,9 +55,9 @@ Files: `sales.py`, `tests/test_sales.py`, `app.py`, `TASKS.md`.
 
 Interface: `monthly_sales(df) -> DataFrame` with `date`, `total_amount` columns.
 
-- [ ] Test out-of-order dates across January and February with January totaling 15 and February 20. Assert chronological dates and reconciliation to 35. Observe failure.
-- [ ] Implement month-start aggregation and a Plotly line chart with date x-axis, sales y-axis, markers, and currency tooltips.
-- [ ] Run tests, visually inspect the trend, commit with TASK-3, update board.
+- [x] Test out-of-order dates across January and February with January totaling 15 and February 20. Assert chronological dates and reconciliation to 35. Observe failure.
+- [x] Implement month-start aggregation and a Plotly line chart with date x-axis, sales y-axis, markers, and currency tooltips.
+- [x] Run tests, visually inspect the trend, commit with TASK-3, update board.
 
 ## Task 4 — TASK-4: Category and region breakdowns
 
@@ -65,23 +65,32 @@ Files: `sales.py`, `tests/test_sales.py`, `app.py`, `TASKS.md`.
 
 Interface: `sales_by(df, column) -> DataFrame`, permitting only `category` or `region`, descending by amount with alphabetical tie breaking.
 
-- [ ] Test fixture category totals A=25/B=10 and region East=30/West=5, including descending order and reconciliation. Observe failure.
-- [ ] Implement grouping and side-by-side horizontal Plotly bar charts, largest at top, all labels visible.
-- [ ] Run tests, inspect bars and hover values, commit with TASK-4, update board.
+- [x] Test fixture category totals A=25/B=10 and region East=30/West=5, including descending order and reconciliation. Observe failure.
+- [x] Implement grouping and side-by-side horizontal Plotly bar charts, largest at top, all labels visible.
+- [x] Run tests, inspect bars and hover values, commit with TASK-4, update board.
 
 ## Task 5 — TASK-5: Verification and deployment
 
 Files: `tests/test_app.py`, `AGENTS.md`, `TASKS.md`, `README.md`.
 
-- [ ] Independently calculate CSV control totals with standard-library CSV and Decimal; compare to the app and chart aggregates.
-- [ ] Run Streamlit AppTest; require no exceptions, two metrics, and three charts. Run the full pytest suite.
-- [ ] Open the live local app and inspect title, KPI values, chart ordering, labels, and tooltips. Record the tested browser and timing limitations.
-- [ ] Write project instructions, run/redeploy directions, provenance, and lessons; preserve the upstream README as `TUTORIAL.md` before replacing the root landing page.
-- [ ] Review the branch against the PRD, fix substantive findings, and record actual review limitations. Commit with TASK-5.
+- [x] Independently calculate CSV control totals with standard-library CSV and Decimal; compare to the app and chart aggregates.
+- [x] Run Streamlit AppTest; require no exceptions, two metrics, and three charts. Run the full pytest suite.
+- [x] Open the live local app and inspect title, KPI values, chart ordering, labels, and tooltips. Record the tested browser and timing limitations.
+- [x] Write project instructions, run/redeploy directions, provenance, and lessons; preserve the upstream README as `TUTORIAL.md` before replacing the root landing page.
+- [x] Review the branch against the PRD, fix substantive findings, and record actual review limitations. Commit with TASK-5.
 - [ ] Publish to Joseph's `ai-dev-workflow-tutorial` GitHub repository on main. Verify code and board arrived.
 - [ ] Deploy main/app.py to Streamlit Community Cloud after account authorization, open the public URL, verify all charts, and record the URL and real completion status.
 
 ## Plan self-review and approval
 
 Codex checked coverage against the approved design and PRD: all five functional requirements, separate calculations, tests, readable source, versioned board, and deployment are covered. Each computation has independently calculated fixture expectations. Chart presentation additionally requires a visual check. Joseph approved this saved plan and inline execution on September 22, 2026, before the build began.
+
+
+## Execution and review evidence
+
+- TASK-1: 13 tests failed for missing load_sales, then all 13 passed after validation implementation. Commit ebcffbd.
+- TASK-2–4: five new calculation tests failed for missing functions, then all 18 tests passed. Shared code commit 29d1715; separate board commits record each milestone. Combined calculation work is an explicit deviation from separate per-milestone code commits, chosen because the small module shares one fixture and validation contract.
+- TASK-5: independent Decimal total equals 116500.21 for 482 rows; 19 tests pass, including AppTest with two metrics, three charts, and no app errors. Code/docs commit e783bf5.
+- Visual review: in-app Chromium showed readable KPI cards, Jan–Dec trend, all five categories and four regions, largest bars at top. Actual browser hover interaction and cross-browser coverage remain unverified; hover formats are configured in code.
+- Review performed inline by Codex against the PRD and diff; no independent reviewer or student review is claimed. Retained tutorial instructions. No private data or credentials staged. Cloud startup targets are unverified until deployment.
 
